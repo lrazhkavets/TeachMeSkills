@@ -7,11 +7,11 @@
 
 <body>
 
-  <button onclick="loadPhones()" id="button">Загрузить таблицу!</button>
+  <button onclick="loadStudents()" id="button">Загрузить таблицу!</button>
   <table id="myTable"></table>
 
   <script>
-    function loadPhones() {
+    function loadStudents() {
 
       var xhr = new XMLHttpRequest();
 
@@ -32,8 +32,6 @@
         } else {
           // вывести результат
           var students = JSON.parse(xhr.responseText);
-          alert(students);
-
 
           function generateTableHead(table, data) {
     var thead = table.createTHead();
