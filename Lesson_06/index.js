@@ -72,7 +72,7 @@ function getElem(idTable) {
 
 function clearTable(tableId) {
     var table = document.getElementById(tableId);
-    var tbody = document.querySelector('#' + tableId + 'tbody'
+    var tbody = document.querySelector('#' + tableId + 'tbody')
     if (tbody && tbody.nodeName === 'TBODY'))
 }
 

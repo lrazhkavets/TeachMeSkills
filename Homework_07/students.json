@@ -1,0 +1,20 @@
+[
+    {
+        "first_name":"Vasja",
+        "last_name":"Grib",
+        "age":23,
+        "grades":[5,5,5,4,5]
+    },
+    {
+        "first_name":"Kolja",
+        "last_name":"Bril",
+        "age":16,
+        "grades":[4,3,3,4,4]
+    },
+    {
+        "first_name":"Nina",
+        "last_name":"Sas",
+        "age":21,
+        "grades":[5,2,3,4,4]
+    }
+]

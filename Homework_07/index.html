@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <button onclick="loadPhones()" id="button">Загрузить таблицу!</button>
+  <table id="myTable"></table>
+
+  <script>
+    function loadPhones() {
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'students.json', true);
+
+
+      xhr.send();
+
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState != 4) return;
+
+        button.innerHTML = 'Готово!';
+
+        if (xhr.status != 200) {
+          // обработать ошибку
+          alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+          // вывести результат
+          var students = JSON.parse(xhr.responseText);
+          alert(students);
+
+
+          function generateTableHead(table, data) {
+    var thead = table.createTHead();
+    var row = thead.insertRow();
+    for (var key of data) {
+        var th = document.createElement("th");
+      var text = document.createTextNode(key);
+      th.appendChild(text);
+      row.appendChild(th);
+    }
+  }
+  function generateTable(table, data) {
+    var tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+    for (var element of data) {
+        var row = tbody.insertRow();
+      for (key in element) {
+        var cell = row.insertCell();
+        var text = document.createTextNode(element[key]);
+        cell.appendChild(text);
+      }
+    }
+  }
+
+//   function clearTable(tableId) {
+//     var tbody = document.querySelector('#' + tableId + 'tbody')
+//         if (tbody && tbody.nodeName === '#TBODY') {
+//             tbody.remove('tbody');
+//         }
+// }
+
+var table = document.getElementById('myTable');
+var data = Object.keys(students[0]);
+  generateTableHead(table, data);
+  generateTable(table, students);
+  
+  function clickBut(event) {
+    button = document.getElementById(event);
+    // clearTable('myTable');
+    button.addEventListener('click', function() {
+        generateTable(table, students);
+    });
+}
+clickBut('button');
+        }
+
+      }
+
+      button.innerHTML = 'Загружаю...';
+      // button.disabled = true;
+
+
+      
+    }
+  </script>
+
+</body>
+
+</html>
+
