@@ -10,15 +10,15 @@
       
      
     } catch (error) {
-      console.error(error);
+      console.error(error); 
     }
     
   }
   
  
- let userFib = getData('https://jsonplaceholder.typicode.com/todos');
+ getData('https://jsonplaceholder.typicode.com/todos');
  
-//  document.body.innerHTML = userFib;
+
   
   let n = 15; 
   let fibonacci = [1, 2]; 
