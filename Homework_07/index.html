@@ -3,19 +3,33 @@
 
 <head>
   <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
-
+  
   <button onclick="loadStudents()" id="button">Загрузить таблицу!</button>
   <table id="myTable"></table>
 
   <script>
+    
     function loadStudents() {
+
+      var students = loadStudentsFromStorage();
+
+      if(students) {
+        generateTable(table, students);
+        return;
+      }
 
       var xhr = new XMLHttpRequest();
 
       xhr.open('GET', 'students.json', true);
+
+      xhr.onload = function () {
+        console.log(this.response);
+        localStorage.setItem('students', xhr.responseText);
+      };
 
 
       xhr.send();
@@ -34,18 +48,19 @@
           var students = JSON.parse(xhr.responseText);
 
           function generateTableHead(table, data) {
-    var thead = table.createTHead();
-    var row = thead.insertRow();
-    for (var key of data) {
-        var th = document.createElement("th");
-      var text = document.createTextNode(key);
-      th.appendChild(text);
-      row.appendChild(th);
+            var data = Object.keys(data[0]);
+            var thead = table.createTHead();
+            var row = thead.insertRow();
+              for (var key of data) {
+                var th = document.createElement("th");
+                var text = document.createTextNode(key);
+                  th.appendChild(text);
+                  row.appendChild(th);
     }
   }
   function generateTable(table, data) {
     var tbody = document.createElement('tbody');
-    table.appendChild(tbody);
+    table.appendChild(tbody);    
     for (var element of data) {
         var row = tbody.insertRow();
       for (key in element) {
@@ -56,6 +71,18 @@
     }
   }
 
+  function clickBut(event) {
+    var button = document.getElementById(event);
+    var thead = table.createTHead();
+    if(thead == null) {
+      generateTableHead(table, students);
+    }
+    // generateTableHead(table, students);
+    // clearTable('myTable');
+    button.addEventListener('click', function() {
+        generateTable(table, students);
+    });
+}
 //   function clearTable(tableId) {
 //     var tbody = document.querySelector('#' + tableId + 'tbody')
 //         if (tbody && tbody.nodeName === '#TBODY') {
@@ -64,17 +91,12 @@
 // }
 
 var table = document.getElementById('myTable');
-var data = Object.keys(students[0]);
-  generateTableHead(table, data);
-  generateTable(table, students);
+// var table = $("#myTable")
+// var data = Object.keys(students[0]);
+  // generateTableHead(table, students);
+  // generateTable(table, students);
   
-  function clickBut(event) {
-    button = document.getElementById(event);
-    // clearTable('myTable');
-    button.addEventListener('click', function() {
-        generateTable(table, students);
-    });
-}
+  
 clickBut('button');
         }
 
@@ -86,6 +108,12 @@ clickBut('button');
 
       
     }
+
+    function loadStudentsFromStorage (s) {
+      var stringifiedStudents = JSON.stringify(s);
+      localStorage.setItem('students', stringifiedStudents)
+    };
+    
   </script>
 
 </body>

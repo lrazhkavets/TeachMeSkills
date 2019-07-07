@@ -1,0 +1,26 @@
+[
+	{
+		"id": 0,
+		"first_name": "Bob",
+        "last_name": "Martin",
+        "age": 54,
+        "phone": "555-1234",
+        "department_id": 0
+    },
+    {
+		"id": 1,
+		"first_name": "Den",
+        "last_name": "Green",
+        "age": 24,
+        "phone": "555-5555",
+        "department_id": 0
+	},
+	{
+		"id": 2,
+		"first_name": "Vlad",
+        "last_name": "Potehin",
+        "age": 33,
+        "phone": "223-1234",
+        "department_id": 0
+	}
+]
