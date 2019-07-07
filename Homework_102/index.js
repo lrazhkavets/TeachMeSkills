@@ -1,3 +1,4 @@
+"use strict"
 
   
  async function getData(url) {
@@ -34,7 +35,7 @@ for (let i = 2; i < n; i ++) {
   let clonedArray = JSON.parse(JSON.stringify(arr));
    for (let i = 0; i < fibonacci.length; i++) {
      if (fibonacci[i]!=null) {
-      for ( j=0; j < clonedArray.length; j++)
+      for (let j=0; j < clonedArray.length; j++)
        if (fibonacci[i]==clonedArray[j].id){
         showUser(clonedArray[j]);
         console.log(fibonacci[i]);}
