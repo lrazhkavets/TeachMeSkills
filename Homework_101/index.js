@@ -10,8 +10,8 @@ class MyArray {
     spliceMy() {}
   
     mapMy(callback) {
-        this.array.push(...items);;
-        return callback;
+        let a = this.array.push(...items);
+        return callback(a);
     }
   
     filterMy() {}
@@ -27,6 +27,14 @@ class MyArray {
   
   arr1.pushMy(1, 2, 3, 3);
 
+  console.log(arr1);
+
+  // const arr2 = new MyArray();
+  
+  function fun(b) {
+return b*2;
+  }
+  arr1.mapMy(fun(2));
   console.log(arr1);
   
 //   const ar2 = ar.map(function(item, index, array) {
